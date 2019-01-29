@@ -1,0 +1,23 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": ["warn", "tab"],
+        "quotes": ["error", "single"],
+        "no-unused-vars": "warn",
+        "no-undef": "warn",
+        "semi": ["error", "always"],
+        "no-console": "warn"
+    },
+    "globals": {
+        "angular": true,
+        "agGrid": true
+    }
+}

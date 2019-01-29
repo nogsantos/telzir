@@ -1,0 +1,53 @@
+{
+	"name": "telzir",
+	"version": "0.1.0",
+	"description": "Fale mais",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "./node_modules/.bin/nodemon ./src/server.js --ignore *.marko.js"
+	},
+	"main": "./src/server.js",
+	"author": "Fabricio Nogueira",
+	"license": "ISC",
+	"private": true,
+	"keywords": [
+		"vilzir",
+		"challange",
+		"telzir"
+	],
+	"dependencies": {
+		"@lasso/marko-taglib": "1.0.13",
+		"body-parser": "1.18.3",
+		"browser-refresh": "1.7.3",
+		"browser-refresh-taglib": "1.1.0",
+		"express": "4.16.4",
+		"lasso": "^3.2.9",
+		"lasso-marko": "2.4.6",
+		"marko": "^4.14.21",
+		"module-alias": "2.1.0",
+		"mongoose": "5.4.7"
+	},
+	"devDependencies": {
+		"jest": "24.0.0",
+		"node-sass": "4.11.0",
+		"nodemon": "1.18.9",
+		"eslint": "5.12.1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:nogsantos/telzir.git"
+	},
+	"bugs": {
+		"url": "https://github.com/nogsantos/telzir/issues"
+	},
+	"engines": {
+		"node": ">=10.0.0"
+	},
+	"_moduleAliases": {
+		"@root": ".",
+		"@config": "src/config",
+		"@models": "src/models",
+		"@routes": "src/routes",
+		"@views": "src/views"
+	}
+}
