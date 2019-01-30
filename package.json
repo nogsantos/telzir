@@ -4,7 +4,9 @@
 	"description": "Fale mais",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "./node_modules/.bin/nodemon ./src/server.js --ignore *.marko.js"
+		"start": "./node_modules/.bin/npm-run-all --parallel build:*",
+		"build:server": "./node_modules/.bin/nodemon ./src/server.js --ignore *.marko.js",
+		"build:sass": "./node_modules/.bin/node-sass -w -x -r ./src/public/sass -o ./src/public/css"
 	},
 	"main": "./src/server.js",
 	"author": "Fabricio Nogueira",
@@ -23,15 +25,16 @@
 		"express": "4.16.4",
 		"lasso": "^3.2.9",
 		"lasso-marko": "2.4.6",
-		"marko": "^4.14.21",
+		"marko": "^4.14.22",
 		"module-alias": "2.1.0",
 		"mongoose": "5.4.7"
 	},
 	"devDependencies": {
+		"eslint": "5.12.1",
 		"jest": "24.0.0",
-		"node-sass": "4.11.0",
+		"node-sass": "^4.9.0",
 		"nodemon": "1.18.9",
-		"eslint": "5.12.1"
+		"npm-run-all": "4.1.5"
 	},
 	"repository": {
 		"type": "git",
@@ -41,7 +44,7 @@
 		"url": "https://github.com/nogsantos/telzir/issues"
 	},
 	"engines": {
-		"node": ">=10.0.0"
+		"node": ">=6.0.0"
 	},
 	"_moduleAliases": {
 		"@root": ".",
