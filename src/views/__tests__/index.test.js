@@ -1,4 +1,4 @@
-const component = require('../src/views/index.marko');
+const component = require('../index.marko');
 /**
  * Must test index marko
  */

@@ -6,6 +6,7 @@
 		"test": "./node_modules/.bin/jest --verbose --no-cache",
 		"start": "./node_modules/.bin/npm-run-all --parallel build:*",
 		"build:server": "./node_modules/.bin/nodemon ./src/server.js --ignore *.marko.js",
+		"build:dev": "./node_modules/.bin/browser-refresh --inspect ./src/server.js",
 		"build:sass": "./node_modules/.bin/node-sass -w -x -r ./src/public/sass -o ./src/public/css"
 	},
 	"main": "./src/server.js",
@@ -51,6 +52,7 @@
 		"@config": "src/config",
 		"@models": "src/models",
 		"@routes": "src/routes",
+		"@modules": "src/modules",
 		"@views": "src/views"
 	},
 	"jest": {

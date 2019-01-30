@@ -1,0 +1,28 @@
+<lasso-page package-path="./browser.json" />
+
+class {
+    onCreate() {
+        this.state = { count:0 };
+    }
+    increment() {
+        this.state.count++;
+    }
+}
+
+<!-- CSS includes -->
+<lasso-head/>
+
+<!-- <app-nav/> -->
+<div class="container">
+    <!-- <calculator/> -->
+    <div.count>
+        ${state.count}
+    </div>
+    <button class="btn btn-large" on-click('increment')>Calculate!</button>
+</div>
+<!-- <app-footer/> -->
+<!-- JS includes -->
+<!-- <lasso-body/> -->
+
+<!-- JS includes -->
+<lasso-body/>
