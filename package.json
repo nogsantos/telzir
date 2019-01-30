@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"description": "Fale mais",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"test": "./node_modules/.bin/jest --verbose --no-cache",
 		"start": "./node_modules/.bin/npm-run-all --parallel build:*",
 		"build:server": "./node_modules/.bin/nodemon ./src/server.js --ignore *.marko.js",
 		"build:sass": "./node_modules/.bin/node-sass -w -x -r ./src/public/sass -o ./src/public/css"
@@ -52,5 +52,17 @@
 		"@models": "src/models",
 		"@routes": "src/routes",
 		"@views": "src/views"
+	},
+	"jest": {
+		"testPathIgnorePatterns": [
+			"<rootDir>/static/",
+			"<rootDir>/node_modules/"
+		],
+		"modulePaths": [
+			"<rootDir>"
+		],
+		"transform": {
+			"^.+\\.marko$": "<rootDir>/src/index.js"
+		}
 	}
 }
