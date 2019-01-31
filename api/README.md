@@ -13,10 +13,6 @@ Main Tools
             <td>Engine</td>
         </tr>
         <tr>
-            <td>Marko</td>
-            <td>View as server side render</td>
-        </tr>
-        <tr>
             <td>Mongo</td>
             <td>NoSql database</td>
         </tr>
