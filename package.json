@@ -51,6 +51,9 @@
 			"<rootDir>/static/",
 			"<rootDir>/node_modules/"
 		],
+		"moduleNameMapper": {
+			"@modules(.*)$": "<rootDir>/src/modules/$1"
+		},
 		"modulePaths": [
 			"<rootDir>"
 		],
