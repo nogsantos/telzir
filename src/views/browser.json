@@ -1,9 +1,0 @@
-{
-    "dependencies": [
-        "../public/css/style.css",
-        "require: ./components/app/index.marko",
-        "require: ./components/app-head/index.marko",
-        "require: ./components/app-nav/index.marko",
-        "require: ./components/app-footer/index.marko"
-    ]
-}

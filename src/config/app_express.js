@@ -1,30 +1,12 @@
-require('marko/node-require').install();
-require('marko/express');
-require('marko/browser-refresh').enable();
-require('lasso/browser-refresh').enable('*.marko *.css *.less *.styl *.scss *.sass *.png *.jpeg *.jpg *.gif *.webp *.svg');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const routes = require('@routes');
-
+const product = require('@routes/product');
+const promo = require('@routes/promo');
 /**
  * Detect environment
  */
 const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
-
-/**
- * Configure lasso to control how JS/CSS/etc. is delivered to the browser
- */
-let is_enabled_to_prod = env === 'production';
-require('lasso').configure({
-	plugins: ['lasso-marko'],
-	outputDir: '../public',
-	bundlingEnabled: is_enabled_to_prod,
-	minify: is_enabled_to_prod,
-	fingerprintsEnabled: is_enabled_to_prod
-});
-
-app.use(require('lasso/middleware').serveStatic());
 
 /**
  * Middleware for body-parser
@@ -43,7 +25,8 @@ app.use('*', (req, res, next) => {
 /**
  * Define routes
  */
-app.use(routes);
+app.use('/product', product);
+app.use('/product/promo', promo);
 
 /**
  * Load config by environment

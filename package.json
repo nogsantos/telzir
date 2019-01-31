@@ -1,13 +1,11 @@
 {
 	"name": "telzir",
 	"version": "0.1.0",
-	"description": "Fale mais",
+	"description": "Telzir Fale mais",
 	"scripts": {
-		"test": "./node_modules/.bin/jest --verbose --no-cache",
+		"test": "./node_modules/.bin/jest --verbose --no-cache --coverage",
 		"start": "./node_modules/.bin/npm-run-all --parallel build:*",
-		"build:server": "./node_modules/.bin/nodemon ./src/server.js --ignore *.marko.js",
-		"build:dev": "./node_modules/.bin/browser-refresh --inspect ./src/server.js",
-		"build:sass": "./node_modules/.bin/node-sass -w -x -r ./src/public/sass -o ./src/public/css"
+		"build:server": "./node_modules/.bin/nodemon ./src/server.js"
 	},
 	"main": "./src/server.js",
 	"author": "Fabricio Nogueira",
@@ -19,21 +17,15 @@
 		"telzir"
 	],
 	"dependencies": {
-		"@lasso/marko-taglib": "1.0.13",
 		"body-parser": "1.18.3",
-		"browser-refresh": "1.7.3",
-		"browser-refresh-taglib": "1.1.0",
 		"express": "4.16.4",
-		"lasso": "^3.2.9",
-		"lasso-marko": "2.4.6",
-		"marko": "^4.14.22",
 		"module-alias": "2.1.0",
 		"mongoose": "5.4.7"
 	},
 	"devDependencies": {
 		"eslint": "5.12.1",
 		"jest": "24.0.0",
-		"node-sass": "^4.9.0",
+		"mockingoose": "2.12.0",
 		"nodemon": "1.18.9",
 		"npm-run-all": "4.1.5"
 	},
@@ -50,12 +42,11 @@
 	"_moduleAliases": {
 		"@root": ".",
 		"@config": "src/config",
-		"@models": "src/models",
 		"@routes": "src/routes",
-		"@modules": "src/modules",
-		"@views": "src/views"
+		"@modules": "src/modules"
 	},
 	"jest": {
+		"verbose": true,
 		"testPathIgnorePatterns": [
 			"<rootDir>/static/",
 			"<rootDir>/node_modules/"
@@ -63,8 +54,6 @@
 		"modulePaths": [
 			"<rootDir>"
 		],
-		"transform": {
-			"^.+\\.marko$": "<rootDir>/src/index.js"
-		}
+		"testEnvironment": "node"
 	}
 }
