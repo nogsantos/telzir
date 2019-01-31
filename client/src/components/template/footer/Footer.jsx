@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const FooterRender = styled.div`
-	color: white;
-	padding-left: ${props => props.theme.padding}px;
-	background-color: ${props => props.theme.backgroundColor};
 	.footer-copyright {
 		overflow: hidden;
 		min-height: 50px;
@@ -36,8 +33,8 @@ class Footer extends Component {
 	renderUserFooter = () => {
 		return (
 			<div className="col s12 m12 xl12">
-				<div className="footer-copyright">
-					{new Date().getFullYear()}
+				<div className="container">
+					<div className="footer-copyright">{new Date().getFullYear()}</div>
 				</div>
 			</div>
 		);
@@ -57,11 +54,7 @@ class Footer extends Component {
 	 * @memberof Footer
 	 */
 	render() {
-		return (
-			<this.RenderFooter>
-				{this.renderUserFooter()}
-			</this.RenderFooter>
-		);
+		return <this.RenderFooter>{this.renderUserFooter()}</this.RenderFooter>;
 	}
 }
 

@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
+
+const MainHeader = styled.div`
+    height: 15rem;
+    color: #fff;
+`;
 
 /**
  * Header main component
@@ -15,7 +20,11 @@ class Header extends Component {
 	 * @memberof Header
 	 */
 	render() {
-		return <div>Header</div>;
+		return (
+			<MainHeader className="purple darken-2 z-depth-2">
+				<div className="container">Header</div>
+			</MainHeader>
+		);
 	}
 }
 export default Header;

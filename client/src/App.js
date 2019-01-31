@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
-import { Header, Footer } from './components/template/index';
+import { Header, Body, Footer } from './components/template/index';
 /**
- * App default class
+ * App
+ *
+ * @class App
+ * @extends {Component}
  */
 class App extends Component {
-    /**
-     *
-     */
+	/**
+	 * Render
+	 *
+	 * @returns
+	 * @memberof App
+	 */
 	render() {
 		return (
 			<section>
 				<Header />
 				<div className="container">
-					<h1>Body</h1>
+					<Body />
 				</div>
 				<Footer />
 			</section>

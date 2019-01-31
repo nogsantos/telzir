@@ -13,3 +13,9 @@ Run Development evironment
 ```bash
 $ npm start
 ```
+
+Run Tests
+
+```bash
+$ npm test
+```
