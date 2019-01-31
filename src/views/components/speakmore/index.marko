@@ -1,0 +1,58 @@
+import sum from '../../../modules/pre-defined/index.js';
+<lasso-page package-path="./browser.json" />
+
+<form />
+
+$ {
+    var bgColor = sum.list();
+
+    console.log(bgColor);
+}
+
+<div class="row s12 m12">
+    <ul>
+        <for(codes in sum.list())>
+            <li>${codes}</li>
+        </for>
+    </ul>
+</div>
+<div class="row s12 m12">
+    <table class="highlight">
+        <thead>
+            <tr>
+                <th>Origem</th>
+                <th>Destino</th>
+                <th>Tempo</th>
+                <th>Plano FaleMais</th>
+                <th>Com FaleMais</th>
+                <th>Sem FaleMais</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>011</td>
+                <td>016</td>
+                <td>20</td>
+                <td>FaleMais 30</td>
+                <td>0.00</td>
+                <td>${new sum(11, 16, 20).cost()}</td>
+            </tr>
+            <tr>
+                <td>011</td>
+                <td>017</td>
+                <td>80</td>
+                <td>FaleMais 60</td>
+                <td>0.00</td>
+                <td>${new sum(11, 17, 80).cost()}</td>
+            </tr>
+            <tr>
+                <td>018</td>
+                <td>011</td>
+                <td>200</td>
+                <td>FaleMais 120</td>
+                <td>0.00</td>
+                <td>${new sum(18, 11, 200).cost()}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

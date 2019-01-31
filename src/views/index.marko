@@ -12,13 +12,15 @@
 <body>
     <app-nav/>
     <div class="container">
-        <app/>
+        <if(data.populate)>
+            <h2>Populado</h2>
+        </if>
+        <speakmore />
     </div>
     <app-footer/>
     <!-- JS includes -->
     <lasso-body/>
 
     <browser-refresh enabled="true"/>
-    <!-- <script src="{process.env.BROWSER_REFRESH_URL}"></script> -->
 </body>
 </html>

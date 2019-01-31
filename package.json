@@ -6,7 +6,7 @@
 		"test": "./node_modules/.bin/jest --verbose --no-cache",
 		"start": "./node_modules/.bin/npm-run-all --parallel build:*",
 		"build:server": "./node_modules/.bin/nodemon ./src/server.js --ignore *.marko.js",
-		"build:dev": "./node_modules/.bin/browser-refresh --inspect ./src/server.js",
+		"off:dev": "./node_modules/.bin/browser-refresh --inspect ./src/server.js",
 		"build:sass": "./node_modules/.bin/node-sass -w -x -r ./src/public/sass -o ./src/public/css"
 	},
 	"main": "./src/server.js",
@@ -33,6 +33,7 @@
 	"devDependencies": {
 		"eslint": "5.12.1",
 		"jest": "24.0.0",
+		"mockingoose": "2.12.0",
 		"node-sass": "^4.9.0",
 		"nodemon": "1.18.9",
 		"npm-run-all": "4.1.5"
@@ -56,6 +57,7 @@
 		"@views": "src/views"
 	},
 	"jest": {
+		"verbose": true,
 		"testPathIgnorePatterns": [
 			"<rootDir>/static/",
 			"<rootDir>/node_modules/"
@@ -65,6 +67,7 @@
 		],
 		"transform": {
 			"^.+\\.marko$": "<rootDir>/src/index.js"
-		}
+		},
+		"testEnvironment": "node"
 	}
 }
