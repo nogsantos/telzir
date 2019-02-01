@@ -1,30 +1,28 @@
 const Product = require('../product');
+const constants = require('@config/constants.js');
 
 /**
  * SpeakMore class
  */
-class SpeakMore extends Product {
+class SpeakMore {
 	/**
 	 *
 	 */
-	constructor(origin, destiny, timer) {
-		super(origin, destiny, timer);
+	constructor({ origin, destiny, timer, plan }) {
+		this.origin = origin;
+		this.destiny = destiny;
+		this.timer = timer;
+		this.plan = plan;
 	}
-
 	/**
 	 * Call cost per minut
 	 */
 	cost() {}
-
 	/**
 	 *
 	 */
-	get plan() {
-		return [
-			{ code: 1, title: 'FaleMais 30', timer: 30 },
-			{ code: 2, title: 'FaleMais 60', timer: 60 },
-			{ code: 3, title: 'FaleMais 120', timer: 120 }
-		];
+	getDefaultPlanList() {
+		return constants.default_product_list();
 	}
 }
 

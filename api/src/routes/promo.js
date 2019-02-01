@@ -7,7 +7,8 @@ const SpeakMore = require('@modules/speak-more/controller');
 /**
  * Index route
  */
-router.get('/', PreDefined.list);
+// router.get('/', PreDefined.list);
+router.get('/:origin/:destiny/:timer', PreDefined.calculate);
 
 /**
  * Speak more promo

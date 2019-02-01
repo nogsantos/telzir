@@ -16,4 +16,4 @@ const schema = mongoose.Schema({
 		required: true
 	}
 });
-module.exports = mongoose.model('ListOfCode', schema);
+module.exports = mongoose.model('CodeList', schema);

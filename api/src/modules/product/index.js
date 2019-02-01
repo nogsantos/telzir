@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const ListOfCode = require('@modules/product/model.js');
+const constants = require('@config/constants.js');
+const CodeList = require('@modules/product/model.js');
 /**
  * Telzir products
  */
@@ -9,60 +10,91 @@ class Product {
 	 *
 	 * @param {Number} origin
 	 * @param {Number} destiny
-	 * @param {Number} timer
 	 */
-	constructor(origin, destiny, timer) {
+	constructor({ origin, destiny }) {
 		this.origin = origin;
 		this.destiny = destiny;
-		this.timer = timer;
 	}
 
 	/**
-	 * Returns a pre-defined list with codes of oring, destiny and values
+	 * Get product price by fields
 	 */
-	listOfCode() {
-		return [
-			{ origin: 11, destiny: 16, price: 1.9 },
-			{ origin: 16, destiny: 11, price: 2.9 },
-			{ origin: 11, destiny: 17, price: 1.7 },
-			{ origin: 17, destiny: 11, price: 2.7 },
-			{ origin: 11, destiny: 18, price: 0.9 },
-			{ origin: 18, destiny: 11, price: 1.9 }
-		];
+	getPrice() {
+		return new Promise((resolve, reject) => {
+			if (this.isValid() && this.hasConnection()) {
+				resolve(
+					CodeList.find({ origin: this.origin, destiny: this.destiny })
+						.select('-_id -origin -destiny -__v')
+						.then(codes => codes)
+						.catch(err => err)
+				);
+			}
+			reject(constants.required_fields(['origin', 'destiny']).message);
+		});
 	}
 
 	/**
-	 *
+	 * Return a list of
 	 */
 	list() {
-		if (mongoose.connection.readyState) {
-			return ListOfCode.find({}).then(codes => codes);
-		}
-	}
-
-	test() {
-		return 'test';
+		return new Promise((resolve, reject) => {
+			if (this.hasConnection()) {
+				resolve(
+					CodeList.find({})
+						.select('-_id -__v')
+						.then(codes => codes)
+						.catch(err => err)
+				);
+			}
+			reject(constants.db_connect_error().message);
+		});
 	}
 
 	/**
-	 * Populate data
+	 * Mock default values
 	 */
-	populate() {
-		let codes = [
-			new ListOfCode({ origin: 11, destiny: 16, price: 1.9 }),
-			new ListOfCode({ origin: 16, destiny: 11, price: 2.9 }),
-			new ListOfCode({ origin: 11, destiny: 17, price: 1.7 }),
-			new ListOfCode({ origin: 17, destiny: 11, price: 2.7 }),
-			new ListOfCode({ origin: 11, destiny: 18, price: 0.9 }),
-			new ListOfCode({ origin: 18, destiny: 11, price: 1.9 })
-		];
-		return ListOfCode.insertMany(codes)
-			.then(documents => {
-				console.log(documents, 'Success');
-			})
-			.catch(err => {
-				console.error(err);
-			});
+	getDefaultProductList() {
+		return constants.default_produt_list();
+	}
+
+	/**
+	 * Populate default data
+	 */
+	setup() {
+		return new Promise((resolve, reject) => {
+			if (this.hasConnection()) {
+				let codes = [];
+				this.getDefaultProductList().forEach(list => {
+					codes.push(new CodeList(list));
+				});
+				resolve(
+					CodeList.insertMany(codes)
+						.then(documents => {
+							console.log(documents);
+							return documents;
+						})
+						.catch(err => {
+							console.error(err);
+							return err;
+						})
+				);
+			}
+			reject(constants.db_connect_error().message);
+		});
+	}
+
+	/**
+	 * Validate fields before query
+	 */
+	isValid() {
+		return this.origin !== null || this.destiny !== null;
+	}
+
+	/**
+	 * Validate if has connection
+	 */
+	hasConnection() {
+		return mongoose.connection.readyState === 1;
 	}
 }
 module.exports = Product;

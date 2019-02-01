@@ -4,6 +4,6 @@ const SpeakMore = require('../');
  */
 describe('SpeakMore', () => {
 	it('It caculate the value of promotion', () => {
-		const speakMore = new SpeakMore(11, 16);
+		const speakMore = new SpeakMore({ origin: 11, destiny: 16 });
 	});
 });

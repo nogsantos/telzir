@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"description": "Telzir Fale mais",
 	"scripts": {
-		"test": "./node_modules/.bin/jest --verbose --no-cache --coverage",
+		"test": "./node_modules/.bin/jest --verbose --no-cache --watch",
 		"start": "./node_modules/.bin/npm-run-all --parallel build:*",
 		"build:server": "./node_modules/.bin/nodemon ./src/server.js"
 	},
@@ -49,10 +49,12 @@
 		"verbose": true,
 		"testPathIgnorePatterns": [
 			"<rootDir>/static/",
-			"<rootDir>/node_modules/"
+			"<rootDir>/node_modules/",
+			"<rootDir>/package.json"
 		],
 		"moduleNameMapper": {
-			"@modules(.*)$": "<rootDir>/src/modules/$1"
+			"@modules(.*)$": "<rootDir>/src/modules/$1",
+			"@config(.*)$": "<rootDir>/src/config/$1"
 		},
 		"modulePaths": [
 			"<rootDir>"
