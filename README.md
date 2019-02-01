@@ -31,13 +31,19 @@ Requirements
     </tbody>
 </table>
 
-Init project
+Init and setup project
 
 ```bash
 $ npm i
 ```
 
-Setup project
+Run `dev` environment
+
+```bash
+$ npm run build:dev
+```
+
+Run `prod` environment
 
 ```bash
 $ npm run build:dev

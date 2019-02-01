@@ -2,12 +2,13 @@
   "name": "setup",
   "version": "0.1.0",
   "description": "Project setup",
-  "main": "setup.js",
+  "main": "./scripts/setup.js",
   "scripts": {
     "test": "node ./scripts/test.js",
     "setup": "node ./scripts/setup.js",
     "build:dev": "node ./scripts/dev.js",
-    "build:prod": "node ./scripts/prod.js"
+    "build:prod": "node ./scripts/prod.js",
+    "postinstall": "node ./scripts/setup.js"
   },
   "repository": {
     "type": "git",

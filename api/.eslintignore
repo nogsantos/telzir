@@ -1,3 +1,2 @@
-*.marko.js
 node_modules/
 __tests__
