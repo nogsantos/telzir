@@ -3,7 +3,8 @@
 	"version": "0.1.0",
 	"description": "Telzir Fale mais",
 	"scripts": {
-		"test": "./node_modules/.bin/jest --verbose --no-cache --watch",
+		"test": "./node_modules/.bin/jest --verbose --no-cache",
+		"test:watch": "./node_modules/.bin/jest --verbose --no-cache --watch",
 		"start": "./node_modules/.bin/npm-run-all --parallel build:*",
 		"build:server": "./node_modules/.bin/nodemon ./src/server.js"
 	},

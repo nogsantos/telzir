@@ -54,6 +54,14 @@ $ npm start
 
 ### Test
 
+To run
+
 ```bash
 $ npm test
+```
+
+To watch
+
+```bash
+$ npm run test:watch
 ```
