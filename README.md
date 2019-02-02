@@ -19,6 +19,11 @@ Requirements
             <td>Dev | Prod</td>
         </tr>
         <tr>
+            <td>Npm</td>
+            <td>>= 5.x</td>
+            <td>Dev | Prod</td>
+        </tr>
+        <tr>
             <td>Docker</td>
             <td>latest</td>
             <td>Prod</td>
@@ -37,23 +42,35 @@ Requirements
 $ npm i
 ```
 
-Run `dev` environment
+### Run `dev` environment
+
+> #### Premisses
+> The ports `3000` and `3001` will be used to start the servers, they can not be in use for another process at the moment.
+
+Up
 
 ```bash
 $ npm run build:dev
 ```
 
-#### Premisses
+Down
 
-The ports `80` and `3000` will be used, to raise the containers, they can not be in use on host.
+```bash
+$ ctrl + c
+```
 
-Run `prod` environment
+### Run `prod` environment
+
+> #### Premisses
+> The ports `80` and `3000` will be used, to raise the containers, they can not be in use on host.
+
+Up
 
 ```bash
 $ npm run build:prod
 ```
 
-Turn off `prod` environment
+Down
 
 ```bash
 $ npm run build:down
