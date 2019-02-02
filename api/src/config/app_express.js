@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const product = require('@routes/product');
 const promo = require('@routes/promo');
+const briefing = require('@routes/briefing');
 /**
  * Detect environment
  */
@@ -33,6 +34,7 @@ app.use('*', (req, res, next) => {
  */
 app.use('/product', product);
 app.use('/product/promo', promo);
+app.use('/briefing', briefing);
 
 /**
  * Load config by environment
