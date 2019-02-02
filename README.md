@@ -31,7 +31,7 @@ Requirements
     </tbody>
 </table>
 
-Init and setup project
+### Init and setup project
 
 ```bash
 $ npm i
@@ -43,8 +43,18 @@ Run `dev` environment
 $ npm run build:dev
 ```
 
+#### Premisses
+
+The ports `80` and `3000` will be used, to raise the containers, they can not be in use on host.
+
 Run `prod` environment
 
 ```bash
-$ npm run build:dev
+$ npm run build:prod
+```
+
+Turn off `prod` environment
+
+```bash
+$ npm run build:down
 ```

@@ -8,6 +8,7 @@
     "setup": "node ./scripts/setup.js",
     "build:dev": "node ./scripts/dev.js",
     "build:prod": "node ./scripts/prod.js",
+    "build:down": "node ./scripts/down.js",
     "postinstall": "node ./scripts/setup.js"
   },
   "repository": {

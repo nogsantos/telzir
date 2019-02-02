@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
+import Input, { Imput } from '../../input';
 import axios from 'axios';
-// import styled from 'styled-components';
-
 /**
  * App Body
  *
@@ -10,13 +9,13 @@ import axios from 'axios';
  */
 class Body extends Component {
 	state = {
-		persons: []
+		products: []
 	};
 
 	componentDidMount() {
-		axios.get('https://jsonplaceholder.typicode.com/users').then(res => {
-			const persons = res.data;
-			this.setState({ persons });
+		axios.get(`${process.env.REACT_APP_API_ENDPOINT}/product/`).then(res => {
+			const products = res.data;
+			this.setState({ products });
 		});
 	}
 	/**
@@ -32,10 +31,13 @@ class Body extends Component {
 					<div className="card">
 						<div className="card-content">
 							<ul>
-								{this.state.persons.map(person => (
-									<li>{person.name}</li>
+								{this.state.products.map(product => (
+									<li>{product.price}</li>
 								))}
 							</ul>
+							<Input placeholder="Origem"/>
+							<Input placeholder="Destino"/>
+							<Input placeholder="Minutos"/>
 						</div>
 					</div>
 				</div>

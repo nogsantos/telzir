@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const product = require('@routes/product');
 const promo = require('@routes/promo');
@@ -7,6 +8,11 @@ const promo = require('@routes/promo');
  * Detect environment
  */
 const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
+
+/**
+ * Enable All CORS Requests
+ */
+app.use(cors());
 
 /**
  * Middleware for body-parser
