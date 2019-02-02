@@ -13,3 +13,12 @@ exports.default_product_list = () => [
 	{ title: 'FaleMais 60', timer: 60 },
 	{ title: 'FaleMais 120', timer: 120 }
 ];
+
+exports.default_briefing = () => [
+	{
+		ref_id: 'speakmore',
+		title: 'Calcule seu plano',
+		description:
+			'Com o novo produto <b>FaleMais</b> da Telzir o cliente adquire um plano e pode falar de graça até um determinado tempo <i>(em minutos)</i> e só paga os minutos excedentes. Os minutos excedentes tem um acréscimo de <b>10%</b> sobre a tarifa normal do minuto. Os planos são <b>FaleMais 30 <i>(30 minutos)</i></b>, <b>FaleMais 60 <i>(60 minutos)</i></b> e <b>FaleMais 120 <i>(120 minutos)</i></b>.'
+	}
+];
