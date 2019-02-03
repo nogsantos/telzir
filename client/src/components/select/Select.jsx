@@ -1,45 +1,76 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const SelectRender = styled.div`
+	display: flex;
+	justify-content: space-between;
+	span {
+		font-size: 1.5vw;
+	}
 	.radioPad {
 		display: inline-block;
-		width: 100%;
+		max-width: 10vw;
 		vertical-align: middle;
 	}
 
-	@media (min-width: 440px) {
+	@media only screen and (max-width: 992px) {
+		flex-flow: column;
 		.radioPad {
-			width: 50%;
+			max-width: 100%;
 		}
 	}
 
-	@media (min-width: 560px) {
-		.radioPad {
-			width: 33.333333333333336%;
+	@media only screen and (max-width: 991px) {
+		span {
+			font-size: 2.5vw;
+		}
+    }
+
+	@media only screen and (max-width: 600px) {
+		span {
+			font-size: 3.5vw;
+		}
+	}
+
+	@media only screen and (max-width: 450px) {
+		span {
+			font-size: 5vw;
 		}
 	}
 
 	.radioPad__wrapper {
 		display: block;
 		cursor: pointer;
-		background: #a37a05;
 		color: #fff;
-
 		margin: 0.5rem;
 		padding: 1rem;
 		text-align: center;
+		transition: background 0.56s ease-in-out;
+	}
+
+	.promo-30 {
+		background: #7b1ca6a6;
+		&:hover {
+			background: #7b1ca6;
+		}
+	}
+	.promo-60 {
+		background: #008000b8;
+		&:hover {
+			background: green;
+		}
+	}
+	.promo-120 {
+		background: #a37a05;
+		&:hover {
+			background: #bc8d06;
+		}
 	}
 
 	.radioPad__wrapper:active,
 	.radioPad__wrapper--selected {
 		background: #dea607 !important;
-	}
-
-	.radioPad__wrapper:hover {
-		background: #bc8d06;
 	}
 
 	.radioPad__radio {
@@ -74,13 +105,14 @@ class Select extends Component {
 	 * When component mount
 	 */
 	componentDidMount() {
-		axios.all([axios.get(`${process.env.REACT_APP_API_ENDPOINT}/product/promotion/speak-more/list`)]).then(
-			axios.spread(promotion_response => {
+		axios
+			.get(`${process.env.REACT_APP_API_ENDPOINT}/product/promotion/speak-more/list`)
+			.then(response => {
 				this.setState({
-					plans: promotion_response.data
+					plans: response.data
 				});
 			})
-		);
+			.catch(err => {});
 	}
 
 	/**
@@ -109,7 +141,13 @@ class Select extends Component {
 			return (
 				<div key={key} className="radioPad">
 					<div>
-						<label className={isCurrent ? 'radioPad__wrapper radioPad__wrapper--selected' : 'radioPad__wrapper'}>
+						<label
+							className={
+								isCurrent
+									? 'radioPad__wrapper radioPad__wrapper--selected promo-' + item.timer
+									: 'radioPad__wrapper promo-' + item.timer
+							}
+						>
 							<input
 								className="radioPad__radio"
 								type="radio"
@@ -119,7 +157,7 @@ class Select extends Component {
 								title={item.title}
 								onChange={this.handleRadio.bind(this)}
 							/>
-							<span className="flow-text">{item.title}</span>
+							<span>{item.title}</span>
 						</label>
 					</div>
 				</div>
@@ -136,10 +174,5 @@ class Select extends Component {
 		return <SelectRender>{this.Render()}</SelectRender>;
 	}
 }
-
-// Select.propTypes = {
-// 	id: PropTypes.string.isRequired,
-// 	name: PropTypes.string.isRequired
-// };
 
 export default Select;
