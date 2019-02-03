@@ -1,12 +1,14 @@
-html,
 body {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
 		'Segoe UI Emoji', 'Segoe UI Symbol';
-	margin: 0;
-	padding: 0;
 	display: flow-root;
 	font-size: 14px;
-	background-color: color('grey', 'lighten-5');
+	background-color: #efefee;
+	@media only screen and (min-width: 600px) {
+		background-image: url(https://res.cloudinary.com/nogsantos/image/upload/o_35/v1549231195/telzir/ds.png);
+		background-repeat: no-repeat;
+		background-position: top 15rem left -5rem;
+	}
 }
 
 html::after {
