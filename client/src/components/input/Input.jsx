@@ -26,6 +26,15 @@ const RenderInput = styled.input`
  */
 class Input extends Component {
 	/**
+	 *
+	 */
+	blurHandler(e) {
+		const { setStateValue } = this.props;
+
+		setStateValue({ source: e.target.id, value: e.target.value });
+	}
+
+	/**
 	 * Component render method
 	 *
 	 * @returns
@@ -35,7 +44,13 @@ class Input extends Component {
 		return (
 			<InputRender>
 				<RenderTitle htmlFor={this.props.id}>{this.props.label}</RenderTitle>
-				<RenderInput type="number" id={this.props.id} min={this.props.min} max={this.props.max} />
+				<RenderInput
+					type="number"
+					id={this.props.id}
+					min={this.props.min}
+					max={this.props.max}
+					onBlur={this.blurHandler.bind(this)}
+				/>
 			</InputRender>
 		);
 	}

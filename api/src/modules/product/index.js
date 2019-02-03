@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const constants = require('@config/constants.js');
-const CodeList = require('@modules/product/model.js');
+const model = require('@modules/product/model.js');
 /**
  * Telzir products
  */
@@ -23,13 +23,13 @@ class Product {
 		return new Promise((resolve, reject) => {
 			if (this.isValid() && this.hasConnection()) {
 				resolve(
-					CodeList.find({ origin: this.origin, destiny: this.destiny })
+					model.find({ origin: this.origin, destiny: this.destiny })
 						.select('-_id -origin -destiny -__v')
 						.then(codes => codes)
 						.catch(err => err)
 				);
 			}
-			reject(constants.required_fields(['origin', 'destiny']).message);
+			reject(constants.required_fields([' origin ', ' destiny ']).message);
 		});
 	}
 
@@ -40,7 +40,7 @@ class Product {
 		return new Promise((resolve, reject) => {
 			if (this.hasConnection()) {
 				resolve(
-					CodeList.find({})
+					model.find({})
 						.select('-_id -__v')
 						.then(codes => codes)
 						.catch(err => err)
@@ -54,7 +54,7 @@ class Product {
 	 * Mock default values
 	 */
 	getDefaultProductList() {
-		return constants.default_produt_list();
+		return constants.default_product_list();
 	}
 
 	/**
@@ -65,10 +65,10 @@ class Product {
 			if (this.hasConnection()) {
 				let codes = [];
 				this.getDefaultProductList().forEach(list => {
-					codes.push(new CodeList(list));
+					codes.push(new model(list));
 				});
 				resolve(
-					CodeList.insertMany(codes)
+					model.insertMany(codes)
 						.then(documents => {
 							console.log(documents);
 							return documents;
@@ -87,7 +87,7 @@ class Product {
 	 * Validate fields before query
 	 */
 	isValid() {
-		return this.origin !== null || this.destiny !== null;
+		return this.origin !== null && this.destiny !== null;
 	}
 
 	/**

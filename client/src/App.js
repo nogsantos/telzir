@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Header, Body, Footer } from './components/template/index';
+
 /**
  * App
  *
@@ -15,13 +16,13 @@ class App extends Component {
 	 */
 	render() {
 		return (
-			<section>
+			<Fragment>
 				<Header />
 				<div className="container">
 					<Body />
 				</div>
 				<Footer />
-			</section>
+			</Fragment>
 		);
 	}
 }

@@ -9,7 +9,7 @@ exports.list = (req, res) => {
 			res.json(list);
 		},
 		err => {
-			res.status(400).jsonp({ error: 'message' });
+			res.status(400).jsonp({ error: err });
 		}
 	);
 };
@@ -40,7 +40,7 @@ exports.setup = (req, res) => {
 			res.json(success);
 		},
 		err => {
-			res.status(500).jsonp({ error: 'message' });
+			res.status(500).jsonp({ error: err });
 		}
 	);
 };

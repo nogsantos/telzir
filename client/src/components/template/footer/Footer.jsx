@@ -34,7 +34,7 @@ class Footer extends Component {
 		return (
 			<div className="col s12 m12 xl12">
 				<div className="container">
-					<div className="footer-copyright">{new Date().getFullYear()}</div>
+					<div className="footer-copyright">{new Date().getFullYear()} Fabricio Nogueira <a href="mailto:nogsantos@gmail.com">nogsantos@gmail.com</a></div>
 				</div>
 			</div>
 		);

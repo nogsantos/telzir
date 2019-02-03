@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const product = require('@routes/product');
-const promo = require('@routes/promo');
+const promotions = require('@routes/promotions');
 const briefing = require('@routes/briefing');
 /**
  * Detect environment
@@ -33,7 +33,7 @@ app.use('*', (req, res, next) => {
  * Define routes
  */
 app.use('/product', product);
-app.use('/product/promo', promo);
+app.use('/product/promotion', promotions);
 app.use('/briefing', briefing);
 
 /**

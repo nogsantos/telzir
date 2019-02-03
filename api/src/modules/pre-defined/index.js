@@ -1,4 +1,5 @@
-const Product = require('../product');
+const constants = require('@config/constants.js');
+const Product = require('@modules/product');
 /**
  * Pre-defined plans
  */
@@ -20,28 +21,51 @@ class PreDefined {
 	 * Call cost per minut
 	 */
 	cost() {
-		const product = new Product({ origin: this.origin, destiny: this.destiny });
-		return product.getPrice().then(value => {
-			return value[0].price * this.timer;
+		return new Promise((resolve, reject) => {
+			if (this.isValid()) {
+				const product = new Product({ origin: this.origin, destiny: this.destiny });
+				product.getPrice().then(value => {
+					if (value === null || value.length === 0) {
+						resolve(value);
+						return;
+					}
+					resolve(this.calculate(value[0].price, this.timer));
+					return;
+				});
+			} else {
+				reject(constants.required_fields([' origin ', ' destiny ', ' time ']).message);
+			}
 		});
+	}
 
-		// const list = this.getDefaultProductList();
-		// let listOfOrigin = [];
-		// list.forEach(tax => {
-		// 	if (tax.origin === this.origin) {
-		// 		listOfOrigin.push(tax);
-		// 		// console.log('origin', listOfOrigin);
-		// 	}
-		// });
+	/**
+	 * Calculate values
+	 *
+	 * @param {Number} value
+	 * @param {Number} timer
+	 */
+	calculate(value, timer) {
+		return Number(value) * Number(timer);
+	}
 
-		// let priceValue = 0;
-		// listOfOrigin.forEach(list => {
-		// 	if (list.destiny === this.destiny) {
-		// 		priceValue = list.price;
-		// 		// console.log('price', priceValue);
-		// 	}
-		// });
-		// return this.timer * priceValue;
+	/**
+	 * Validate fields before query
+	 */
+	isValid() {
+		return this.origin !== null && this.destiny !== null && this.timer !== null;
+	}
+
+	/**
+	 * Mock cost
+	 */
+	costMock() {
+		const list = constants.default_produt_list();
+		let listOfOrigin = list.filter(tax => tax.origin === this.origin && tax.destiny === this.destiny);
+		if (listOfOrigin.length > 0) {
+			return this.calculate(this.timer, listOfOrigin[0].price);
+		} else {
+			return null;
+		}
 	}
 }
 

@@ -1,4 +1,3 @@
-const mockingoose = require('mockingoose').default;
 const PreDefined = require('../');
 /**
  * Must test pre-defined class
@@ -6,18 +5,23 @@ const PreDefined = require('../');
  * @todo Mock product
  */
 describe('Pre-defined', () => {
-	it('It caculate the cost call by list of codes [Ex. line 1]', () => {
+	it('It caculate the cost call by list of codes when values are on the list [line 1]', () => {
 		const first = new PreDefined({ origin: 11, destiny: 16, timer: 20 });
-		first.cost().then(value => expect(value).toBe(38));
+		expect(first.costMock()).toBe(38);
 	});
 
-	it('It caculate the cost call by list of codes [Ex. line 2]', () => {
+	it('It caculate the cost call by list of codes when values are on the list [line 2]', () => {
 		const sec = new PreDefined({ origin: 11, destiny: 17, timer: 80 });
-		sec.cost().then(value => expect(value).toBe(136));
+		expect(sec.costMock()).toBe(136);
 	});
 
-	it('It caculate the cost call by list of codes [Ex. line 3]', () => {
+	it('It caculate the cost call by list of codes when values are on the list [line 3]', () => {
 		const third = new PreDefined({ origin: 18, destiny: 11, timer: 200 });
-		third.cost().then(value => expect(value).toBe(380));
+		expect(third.costMock()).toBe(380);
+	});
+
+	it('It send a empty value when when values are not on the list', () => {
+		const third = new PreDefined({ origin: 18, destiny: 17, timer: 100 });
+		expect(third.costMock()).toBe(null);
 	});
 });
