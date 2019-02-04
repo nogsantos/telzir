@@ -51,10 +51,9 @@ class SpeakMore {
 				product.getPrice().then(value => {
 					if (value === null || value.length === 0) {
 						resolve(value);
-						return;
+					} else {
+						resolve(this.calculate(value[0].price));
 					}
-					resolve(this.calculate(value[0].price));
-					return;
 				});
 			} else {
 				reject(constants.required_fields([' origin ', ' destiny ', ' time ', ' plan ']).message);
@@ -74,8 +73,8 @@ class SpeakMore {
 		if (timer <= plan) {
 			return 0;
 		} else {
-			let t = timer - plan;
-			return price * t * 1.1;
+			let timer_diff = timer - plan;
+			return price * timer_diff * 1.1;
 		}
 	}
 
@@ -83,7 +82,7 @@ class SpeakMore {
 	 * Validate fields before query
 	 */
 	isValid() {
-		return this.origin !== null && this.destiny !== null && this.timer !== null && this.plan !== null;
+		return this.origin !== 'null' && this.destiny !== 'null' && this.timer !== 'null' && this.plan !== 'null';
 	}
 
 	/**

@@ -23,7 +23,8 @@ class Product {
 		return new Promise((resolve, reject) => {
 			if (this.isValid() && this.hasConnection()) {
 				resolve(
-					model.find({ origin: this.origin, destiny: this.destiny })
+					model
+						.find({ origin: this.origin, destiny: this.destiny })
 						.select('-_id -origin -destiny -__v')
 						.then(codes => codes)
 						.catch(err => err)
@@ -40,7 +41,8 @@ class Product {
 		return new Promise((resolve, reject) => {
 			if (this.hasConnection()) {
 				resolve(
-					model.find({})
+					model
+						.find({})
 						.select('-_id -__v')
 						.then(codes => codes)
 						.catch(err => err)
@@ -68,7 +70,8 @@ class Product {
 					codes.push(new model(list));
 				});
 				resolve(
-					model.insertMany(codes)
+					model
+						.insertMany(codes)
 						.then(documents => {
 							console.log(documents);
 							return documents;
@@ -87,7 +90,7 @@ class Product {
 	 * Validate fields before query
 	 */
 	isValid() {
-		return this.origin !== null && this.destiny !== null;
+		return this.origin !== 'null' && this.destiny !== 'null';
 	}
 
 	/**

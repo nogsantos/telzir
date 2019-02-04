@@ -27,10 +27,9 @@ class PreDefined {
 				product.getPrice().then(value => {
 					if (value === null || value.length === 0) {
 						resolve(value);
-						return;
+					} else {
+						resolve(this.calculate(value[0].price));
 					}
-					resolve(this.calculate(value[0].price, this.timer));
-					return;
 				});
 			} else {
 				reject(constants.required_fields([' origin ', ' destiny ', ' time ']).message);
@@ -42,17 +41,16 @@ class PreDefined {
 	 * Calculate values
 	 *
 	 * @param {Number} value
-	 * @param {Number} timer
 	 */
-	calculate(value, timer) {
-		return Number(value) * Number(timer);
+	calculate(value) {
+		return Number(value) * Number(this.timer);
 	}
 
 	/**
 	 * Validate fields before query
 	 */
 	isValid() {
-		return this.origin !== null && this.destiny !== null && this.timer !== null;
+		return this.origin !== 'null' && this.destiny !== 'null' && this.timer !== 'null';
 	}
 
 	/**
