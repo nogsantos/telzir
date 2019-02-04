@@ -26,11 +26,10 @@ const RenderInput = styled.input`
  */
 class Input extends Component {
 	/**
-	 *
+	 * A body context consumer
 	 */
 	blurHandler(e) {
 		const { setStateValue } = this.props;
-
 		setStateValue({ source: e.target.id, value: e.target.value });
 	}
 
@@ -43,8 +42,11 @@ class Input extends Component {
 	render() {
 		return (
 			<InputRender>
-				<RenderTitle htmlFor={this.props.id}>{this.props.label}</RenderTitle>
+				<RenderTitle data-testid="title-render" htmlFor={this.props.id}>
+					{this.props.label}
+				</RenderTitle>
 				<RenderInput
+					data-testid="input-render"
 					type="number"
 					id={this.props.id}
 					min={this.props.min}

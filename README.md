@@ -4,13 +4,13 @@ Desafio Fabricio Nogueira (nogsantos@gmail.com).
 
 #### Considerações
 
-Minha idéia inicial para realizar o desafio, era desenvolver uma PWA, server-side render com node e, queria aproveitar oportunidade para testar e aprender uma lib, que dentre outros, também tem esse propósito, [Markojs](https://markojs.com/), desenvolvida pela equipe do Ebay. Porém no meio do caminho, percebi que o tempo não seria suficiente, e dessa forma, migrei o projeto no front para react e continuei utilizando o backend que já havia desenvolvido em node.
+Minha pretensão inicial para realizar o desafio, era desenvolver uma PWA, server-side render com node e, também gostaria aproveitar oportunidade para testar e aprender uma lib, que dentre outros, possui esse propósito, [Markojs](https://markojs.com/), desenvolvida pela equipe do Ebay. Porém no meio do caminho, percebi que o tempo não seria suficiente para o aprendizado e um bom resultado no teste, dessa forma, migrei o projeto no front end para react e continuei utilizando o back end que já havia desenvolvido em node.
 
 No back end, resolvi utilizar uma base de dados com mongo, estou utilizado o [mLab](https://mlab.com/).
 
-No front end, como disse anteriormente, foi desenvolvido em react, está responsivo e dessa forma, espero possa estar de acordo com o item `"Para Web/Mobile"` sei que faltam alguns detalhes, mas espero que valha o esforço.
+No front end, como citado anteriormente, foi desenvolvido em react, está responsivo e dessa forma, espero estar de acordo com o item `"Para Web/Mobile"` sei que faltam alguns detalhes, mas tenho a esperança que o esforço seja válido.
 
-Ainda sobre o front, Não consegui implementar os testes a contento. Com a decisão de migrar para react no meio do projeto, o tempo ficou pequeno para todo o que deveria ser feito.
+Ainda sobre o _front_, Não consegui implementar os testes a contento. Com a decisão de migrar para react no meio do projeto, o tempo ficou pequeno para todo o que deveria ser feito, mas alguns testes foram feitos.
 
 ##### Estrutura do projeto
 
@@ -99,4 +99,24 @@ Down
 
 ```bash
 $ npm run build:down
+```
+
+### Tests
+
+Test All Api and Client
+
+```bash
+$ npm test
+```
+
+Test just Api
+
+```bash
+$ npm run build:test:api
+```
+
+Test just Client
+
+```bash
+$ npm run build:test:client
 ```

@@ -13,7 +13,6 @@ const CalculatorCard = styled.div`
 `;
 
 const AppContext = React.createContext({
-	dirty: false,
 	selectedPlan: plan => {},
 	setStateValue: () => {},
 	calcToList: () => {}
