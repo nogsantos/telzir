@@ -21,7 +21,7 @@ class Header extends Component {
 	 */
 	render() {
 		return (
-			<MainHeader className="purple darken-2 z-depth-2">
+			<MainHeader data-testid="header" className="purple darken-2 z-depth-2">
 				<div className="container">
 					<div className="row">
 						<div className="col s12 m12 xl12">

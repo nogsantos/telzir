@@ -3,19 +3,19 @@ import styled from 'styled-components';
 
 const FooterRender = styled.div`
 	z-index: 10;
-	.footer-copyright {
-		overflow: hidden;
-		min-height: 50px;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 10px;
-		a {
-			color: inherit !important;
-			text-decoration: inherit;
-			&:hover {
-				text-decoration: underline;
-			}
+`;
+const Copyright = styled.div`
+	overflow: hidden;
+	min-height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+	a {
+		color: inherit !important;
+		text-decoration: inherit;
+		&:hover {
+			text-decoration: underline;
 		}
 	}
 `;
@@ -27,40 +27,30 @@ const FooterRender = styled.div`
  */
 class Footer extends Component {
 	/**
-	 * Render footer for logged user
-	 *
-	 * @memberof Footer
-	 */
-	renderUserFooter = () => {
-		return (
-			<div className="col s12 m12 xl12">
-				<div className="container">
-					<div className="footer-copyright">
-						{new Date().getFullYear()} Fabricio Nogueira{' '}
-						<a href="https://fabricionogueira.me" target="_blanck">
-							fabricionogueira.me
-						</a>
-					</div>
-				</div>
-			</div>
-		);
-	};
-	/**
-	 * Render footer strategy
-	 *
-	 * @memberof Footer
-	 */
-	RenderFooter = ({ children }) => {
-		return <FooterRender>{children}</FooterRender>;
-	};
-	/**
 	 * Component render method
 	 *
 	 * @returns
 	 * @memberof Footer
 	 */
 	render() {
-		return <this.RenderFooter>{this.renderUserFooter()}</this.RenderFooter>;
+		return (
+			<FooterRender>
+				<div className="col s12 m12 xl12">
+					<div className="container">
+						<Copyright>
+							<span data-testid="author" className="pull-left">
+								Fabricio Nogueira&copy;2019
+							</span>
+							<span data-testid="contact-address" className="pull-rigth">
+								<a href="https://fabricionogueira.me" target="_blanck">
+									fabricionogueira.me
+								</a>
+							</span>
+						</Copyright>
+					</div>
+				</div>
+			</FooterRender>
+		);
 	}
 }
 
