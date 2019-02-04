@@ -24,4 +24,29 @@ describe('Pre-defined', () => {
 		const third = new PreDefined({ origin: 18, destiny: 17, timer: 100 });
 		expect(third.costMock()).toBe(null);
 	});
+
+	it('It calculates when valid number are passed', () => {
+		const test = new PreDefined({ timer: 10 });
+		expect(test.calculate(10)).toBe(100);
+	});
+
+	it('It returns null when try to calculate invalid number', () => {
+		const test = new PreDefined({});
+		expect(test.calculate()).toBe(null);
+	});
+
+	it('It test if is valid when all required values are valid', () => {
+		const product = new PreDefined({ origin: 18, destiny: 17, timer: 100 });
+		expect(product.isValid()).toBeTruthy();
+	});
+
+	it('It test if is not valid when some of required values are invalid', () => {
+		const product = new PreDefined({ origin: 11, destiny: 17 });
+		expect(product.isValid()).toBeFalsy();
+	});
+
+	it('It test if is not valid when all of required values are invalid', () => {
+		const product = new PreDefined({});
+		expect(product.isValid()).toBeFalsy();
+	});
 });

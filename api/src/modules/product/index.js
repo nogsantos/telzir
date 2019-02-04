@@ -29,8 +29,9 @@ class Product {
 						.then(codes => codes)
 						.catch(err => err)
 				);
+			} else {
+				reject(constants.required_fields([' origin ', ' destiny ']).message);
 			}
-			reject(constants.required_fields([' origin ', ' destiny ']).message);
 		});
 	}
 
@@ -47,8 +48,9 @@ class Product {
 						.then(codes => codes)
 						.catch(err => err)
 				);
+			} else {
+				reject(constants.db_connect_error().message);
 			}
-			reject(constants.db_connect_error().message);
 		});
 	}
 
@@ -81,8 +83,9 @@ class Product {
 							return err;
 						})
 				);
+			} else {
+				reject(constants.db_connect_error().message);
 			}
-			reject(constants.db_connect_error().message);
 		});
 	}
 
@@ -90,7 +93,7 @@ class Product {
 	 * Validate fields before query
 	 */
 	isValid() {
-		return this.origin !== 'null' && this.destiny !== 'null';
+		return this.origin !== 'null' && this.origin !== undefined && this.destiny !== 'null' && this.destiny !== undefined;
 	}
 
 	/**

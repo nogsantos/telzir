@@ -1,6 +1,6 @@
 exports.db_connect_error = () => ({ message: 'No database connection' });
-exports.required_fields = (...args) => ({ message: `Field(s) ${args} values can't be empty` });
-exports.default_produt_list = () => [
+exports.required_fields = (...args) => ({ message: `Field(s) ${args} values can not be empty` });
+exports.default_product_list = () => [
 	{ origin: 11, destiny: 16, price: 1.9 },
 	{ origin: 16, destiny: 11, price: 2.9 },
 	{ origin: 11, destiny: 17, price: 1.7 },

@@ -7,7 +7,9 @@ const model = require('@modules/speak-more/model.js');
  */
 class SpeakMore {
 	/**
+	 * Class constructor
 	 *
+	 * @param {Object} param0
 	 */
 	constructor({ origin, destiny, timer, plan }) {
 		this.origin = origin;
@@ -29,13 +31,14 @@ class SpeakMore {
 						.then(response => response)
 						.catch(err => err)
 				);
+			} else {
+				reject(constants.db_connect_error().message);
 			}
-			reject(constants.db_connect_error().message);
 		});
 	}
 
 	/**
-	 *
+	 * Get default values
 	 */
 	getDefaultPlanList() {
 		return constants.default_speakmore_list();
@@ -82,7 +85,16 @@ class SpeakMore {
 	 * Validate fields before query
 	 */
 	isValid() {
-		return this.origin !== 'null' && this.destiny !== 'null' && this.timer !== 'null' && this.plan !== 'null';
+		return (
+			this.origin !== 'null' &&
+			this.origin !== undefined &&
+			this.destiny !== 'null' &&
+			this.destiny !== undefined &&
+			this.timer !== 'null' &&
+			this.timer !== undefined &&
+			this.plan !== 'null' &&
+			this.plan !== undefined
+		);
 	}
 
 	/**

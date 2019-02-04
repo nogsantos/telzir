@@ -26,8 +26,9 @@ class Briefing {
 						.then(codes => codes)
 						.catch(err => err)
 				);
+			} else {
+				reject(constants.db_connect_error().message);
 			}
-			reject(constants.db_connect_error().message);
 		});
 	}
 
@@ -44,8 +45,9 @@ class Briefing {
 						.then(response => response)
 						.catch(err => err)
 				);
+			} else {
+				reject(constants.required_fields(['ref_id']).message);
 			}
-			reject(constants.required_fields(['ref_id']).message);
 		});
 	}
 
@@ -77,7 +79,7 @@ class Briefing {
 	 * Validate fields before query
 	 */
 	isValid() {
-		return this.ref_id !== null;
+		return this.ref_id !== 'null' && this.ref_id !== undefined;
 	}
 
 	/**

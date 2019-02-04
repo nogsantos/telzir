@@ -43,24 +43,35 @@ class PreDefined {
 	 * @param {Number} value
 	 */
 	calculate(value) {
-		return Number(value) * Number(this.timer);
+		if (value && this.timer) {
+			return Number(value) * Number(this.timer);
+		} else {
+			return null;
+		}
 	}
 
 	/**
 	 * Validate fields before query
 	 */
 	isValid() {
-		return this.origin !== 'null' && this.destiny !== 'null' && this.timer !== 'null';
+		return (
+			this.origin !== 'null' &&
+			this.origin !== undefined &&
+			this.destiny !== 'null' &&
+			this.destiny !== undefined &&
+			this.timer !== 'null' &&
+			this.timer !== undefined
+		);
 	}
 
 	/**
 	 * Mock cost
 	 */
 	costMock() {
-		const list = constants.default_produt_list();
+		const list = constants.default_product_list();
 		let listOfOrigin = list.filter(tax => tax.origin === this.origin && tax.destiny === this.destiny);
 		if (listOfOrigin.length > 0) {
-			return this.calculate(this.timer, listOfOrigin[0].price);
+			return this.calculate(listOfOrigin[0].price);
 		} else {
 			return null;
 		}
