@@ -6,16 +6,16 @@ const utils = require('./utils');
 utils.validateSetup();
 
 function testApi() {
-	const task = 'Test';
+	const task = 'Api Test';
 	utils.defaultMessage(task, 'Testing api');
 	shell.cd('api');
-	shell.exec('npm test', (code, stdout, stderr) => {
+	shell.exec('npm test --watch=false', (code, stdout, stderr) => {
 		shell.echo(stdout);
 		if (code !== 0) {
 			shell.echo(stderr);
-			utils.errorMessage(task, 'Fail');
+			utils.errorMessage(task, 'Fail test api');
 		} else {
-			utils.successMessage(task, 'API');
+			utils.successMessage(task, null, 'API test success');
 		}
 	});
 	shell.cd('..');
