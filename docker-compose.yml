@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+  proxy:
+    container_name: proxy
+    build:
+      context: ./infra/docker
+      dockerfile: nginx.dockerfile
+    restart: always
+    ports:
+      - '80:80'
+    volumes:
+      - type: bind
+        source: ./infra/nginx/services/client
+        target: /etc/nginx/conf.d
+      - type: bind
+        source: ./infra/nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+      - type: bind
+        source: ./infra/nginx/logs/client
+        target: /var/log/nginx
+      - type: bind
+        source: ./client/build
+        target: /var/www/public
+    networks:
+      - nogsantos
+  node_api:
+    container_name: api
+    build:
+      context: ./infra/docker
+      dockerfile: node.dockerfile
+    restart: always
+    ports:
+      - '3000:3000'
+    networks:
+      - nogsantos
+    volumes:
+      - type: bind
+        source: ./api
+        target: /var/www
+volumes:
+  volume:
+networks:
+  nogsantos:
+    driver: bridge

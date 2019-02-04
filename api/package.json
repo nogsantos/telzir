@@ -1,0 +1,67 @@
+{
+	"name": "telzir",
+	"version": "0.1.0",
+	"description": "Telzir Fale mais",
+	"scripts": {
+		"test": "./node_modules/.bin/jest --verbose --no-cache",
+		"test:watch": "./node_modules/.bin/jest --verbose --no-cache --watch",
+		"start": "./node_modules/.bin/npm-run-all --parallel build:*",
+		"build:server": "./node_modules/.bin/nodemon ./src/server.js"
+	},
+	"main": "./src/server.js",
+	"author": "Fabricio Nogueira",
+	"license": "ISC",
+	"private": true,
+	"keywords": [
+		"vilzir",
+		"challange",
+		"telzir"
+	],
+	"dependencies": {
+		"body-parser": "1.18.3",
+		"cors": "2.8.5",
+		"express": "4.16.4",
+		"module-alias": "2.1.0",
+		"mongoose": "5.4.7"
+	},
+	"devDependencies": {
+		"eslint": "5.12.1",
+		"eslint-plugin-jest": "22.2.2",
+		"jest": "24.0.0",
+		"mockingoose": "2.12.0",
+		"nodemon": "1.18.9",
+		"npm-run-all": "4.1.5"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:nogsantos/telzir.git"
+	},
+	"bugs": {
+		"url": "https://github.com/nogsantos/telzir/issues"
+	},
+	"engines": {
+		"node": ">=6.0.0"
+	},
+	"_moduleAliases": {
+		"@root": ".",
+		"@config": "src/config",
+		"@routes": "src/routes",
+		"@modules": "src/modules"
+	},
+	"jest": {
+		"verbose": true,
+		"testPathIgnorePatterns": [
+			"<rootDir>/static/",
+			"<rootDir>/node_modules/",
+			"<rootDir>/package.json"
+		],
+		"moduleNameMapper": {
+			"@modules(.*)$": "<rootDir>/src/modules/$1",
+			"@config(.*)$": "<rootDir>/src/config/$1"
+		},
+		"modulePaths": [
+			"<rootDir>"
+		],
+		"testEnvironment": "node"
+	}
+}

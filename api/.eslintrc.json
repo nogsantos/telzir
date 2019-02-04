@@ -1,0 +1,24 @@
+{
+	"env": {
+		"commonjs": true,
+		"es6": true,
+		"jest/globals": true
+	},
+	"extends": "eslint:recommended",
+	"parserOptions": {
+		"sourceType": "module"
+	},
+	"rules": {
+		"indent": ["warn", "tab"],
+		"quotes": ["error", "single"],
+		"no-unused-vars": "warn",
+		"no-undef": "warn",
+		"semi": ["error", "always"],
+		"no-console": ["error", { "allow": ["warn", "error", "log"] }]
+	},
+	"globals": {
+		"process": true,
+		"console": true
+	},
+	"plugins": ["jest"]
+}
