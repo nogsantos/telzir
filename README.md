@@ -4,7 +4,7 @@ Desafio Fabricio Nogueira (nogsantos@gmail.com).
 
 #### Considerações
 
-Minha pretensão inicial para realizar o desafio, era desenvolver uma PWA, server-side render com node e, também gostaria aproveitar oportunidade para testar e aprender uma lib, que dentre outros, possui esse propósito, [Markojs](https://markojs.com/), desenvolvida pela equipe do Ebay. Porém no meio do caminho, percebi que o tempo não seria suficiente para o aprendizado e um bom resultado no teste, dessa forma, migrei o projeto no front end para react e continuei utilizando o back end que já havia desenvolvido em node.
+Minha pretensão inicial para realizar o desafio, era desenvolver uma PWA, server-side render com node e, também gostaria de aproveitar oportunidade para testar e aprender uma lib, que dentre outros, possui esse propósito, [Markojs](https://markojs.com/), desenvolvida pela equipe do Ebay. No meio do caminho, percebi que o tempo não seria suficiente para o aprendizado e um bom resultado no teste, dessa forma, migrei o projeto no front end para react e continuei utilizando o back end que já havia desenvolvido em node.
 
 No back end, resolvi utilizar uma base de dados com mongo, estou utilizado o [mLab](https://mlab.com/).
 
