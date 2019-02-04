@@ -5,15 +5,15 @@ import List from '../../list';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const mimHegthComponents = 21.9;
 const BriefingCard = styled.div`
-	min-height: ${mimHegthComponents}rem;
+	min-height: 43rem;
 `;
 const CalculatorCard = styled.div`
-	min-height: ${mimHegthComponents}rem;
+	min-height: 21.9rem;
 `;
 
 const AppContext = React.createContext({
+	dirty: false,
 	selectedPlan: plan => {},
 	setStateValue: () => {},
 	calcToList: () => {}
@@ -54,8 +54,9 @@ class Body extends Component {
 				axios.get(`${process.env.REACT_APP_API_ENDPOINT}/briefing/ref/speakmore`)
 			])
 			.then(
-				axios.spread((products_response, briefing_response, promotion_response) => {
+				axios.spread((products_response, briefing_response) => {
 					this.setState({
+						products: products_response.data,
 						briefing: briefing_response.data[0]
 					});
 				})
@@ -118,32 +119,55 @@ class Body extends Component {
 			setStateValue,
 			calcToList
 		};
-		const { selected } = this.state;
+		const { selected, briefing, products } = this.state;
 		return (
 			<AppContext.Provider value={value}>
 				<AppContext.Consumer>
 					{({ selectedPlan, setStateValue, calcToList }) => (
 						<Fragment>
 							<div className="row">
-								<div className="col s12 m6 xl6">
+								<div className="col s12 m5 xl5">
 									<BriefingCard className="card">
 										<div className="card-content">
-											<span className="card-title" dangerouslySetInnerHTML={{ __html: this.state.briefing.title }} />
-											<p dangerouslySetInnerHTML={{ __html: this.state.briefing.description }} />
+											<span className="card-title" dangerouslySetInnerHTML={{ __html: briefing.title }} />
+											<div className="row" dangerouslySetInnerHTML={{ __html: briefing.description }} />
+											<div className="row">
+												<table className="responsive-table highlight">
+													<caption>Tarifa fixa por minuto</caption>
+													<thead>
+														<tr>
+															<td>Origem</td>
+															<td>Destino</td>
+															<td>R$/min</td>
+														</tr>
+													</thead>
+													<tbody>
+														{products.map((item, key) => {
+															return (
+																<tr key={key}>
+																	<td>0{item.origin}</td>
+																	<td>0{item.destiny}</td>
+																	<td>{item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
+																</tr>
+															);
+														})}
+													</tbody>
+												</table>
+											</div>
 										</div>
 									</BriefingCard>
 								</div>
-								<div className="col s12 m6 xl6">
+								<div className="col s12 m7 xl7">
 									<CalculatorCard className="card">
 										<div className="card-content">
 											<div className="row">
-												<div className="col s12 m4 xl4">
+												<div className="col s12 m12 xl4">
 													<Input id="origin" label="Origem" min={3} max={3} {...{ setStateValue }} />
 												</div>
-												<div className="col s12 m4 xl4">
+												<div className="col s12 m12 xl4">
 													<Input id="destiny" label="Destino" min={3} max={3} {...{ setStateValue }} />
 												</div>
-												<div className="col s12 m4 xl4">
+												<div className="col s12 m12 xl4">
 													<Input id="timer" label="Minutos" min={1} max={5} {...{ setStateValue }} />
 												</div>
 											</div>
@@ -154,11 +178,11 @@ class Body extends Component {
 											</div>
 										</div>
 									</CalculatorCard>
-								</div>
-							</div>
-							<div className="row">
-								<div className="col s12 m12 xl12">
-									<List selected={selected} />
+									<div className="row">
+										<div className="col s12 m12 xl12">
+											<List selected={selected} />
+										</div>
+									</div>
 								</div>
 							</div>
 						</Fragment>

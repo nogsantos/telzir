@@ -3,6 +3,7 @@ body {
 		'Segoe UI Emoji', 'Segoe UI Symbol';
 	display: flow-root;
 	font-size: 14px;
+	color: color('grey', 'darken-3');
 	background-color: #efefee;
 	@media only screen and (min-width: 600px) {
 		background-image: url(https://res.cloudinary.com/nogsantos/image/upload/o_35/v1549231195/telzir/ds.png);

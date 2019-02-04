@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const MainHeader = styled.div`
-    height: 15rem;
-    color: #fff;
+	height: 15rem;
+	color: #fff;
 `;
 
 /**
@@ -22,7 +22,13 @@ class Header extends Component {
 	render() {
 		return (
 			<MainHeader className="purple darken-2 z-depth-2">
-				<div className="container">Header</div>
+				<div className="container">
+					<div className="row">
+						<div className="col s12 m12 xl12">
+							<h1>Telzir</h1>
+						</div>
+					</div>
+				</div>
 			</MainHeader>
 		);
 	}

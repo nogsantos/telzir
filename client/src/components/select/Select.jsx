@@ -13,32 +13,27 @@ const SelectRender = styled.div`
 		max-width: 10vw;
 		vertical-align: middle;
 	}
-
 	@media only screen and (max-width: 992px) {
 		flex-flow: column;
 		.radioPad {
 			max-width: 100%;
 		}
 	}
-
 	@media only screen and (max-width: 991px) {
 		span {
 			font-size: 2.5vw;
 		}
-    }
-
+	}
 	@media only screen and (max-width: 600px) {
 		span {
 			font-size: 3.5vw;
 		}
 	}
-
 	@media only screen and (max-width: 450px) {
 		span {
 			font-size: 5vw;
 		}
 	}
-
 	.radioPad__wrapper {
 		display: block;
 		cursor: pointer;
@@ -48,7 +43,6 @@ const SelectRender = styled.div`
 		text-align: center;
 		transition: background 0.56s ease-in-out;
 	}
-
 	.promo-30 {
 		background: #7b1ca6a6;
 		&:hover {
@@ -67,12 +61,10 @@ const SelectRender = styled.div`
 			background: #bc8d06;
 		}
 	}
-
 	.radioPad__wrapper:active,
 	.radioPad__wrapper--selected {
 		background: #dea607 !important;
 	}
-
 	.radioPad__radio {
 		visibility: hidden;
 		height: 0;
@@ -97,8 +89,36 @@ class Select extends Component {
 		super(props);
 		this.state = {
 			plans: [],
+			scroll: 0,
 			select: ''
 		};
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.handleScroll);
+	}
+
+	handleScroll = event => {
+		let scrollTop = event.target.scrollingElement.scrollTop;
+		this.setState({ scroll: scrollTop });
+	};
+
+	/**
+	 * Scroll to result table
+	 */
+	scrollTo = () => {
+		if (this.state.scroll <= 100) {
+			for (let i = 0; i < document.body.scrollHeight; i++) {
+				setTimeout(() => this.makeScroll(i), 150);
+			}
+		}
+	};
+
+	/**
+	 * Add scroll effect
+	 */
+	makeScroll(position) {
+		window.scrollTo(0, position);
 	}
 
 	/**
@@ -113,6 +133,8 @@ class Select extends Component {
 				});
 			})
 			.catch(err => {});
+
+		window.addEventListener('scroll', this.handleScroll);
 	}
 
 	/**
@@ -121,6 +143,7 @@ class Select extends Component {
 	 * @param {*} e
 	 */
 	handleRadio(e) {
+		this.scrollTo();
 		/**
 		 * Context
 		 */
@@ -155,7 +178,7 @@ class Select extends Component {
 								id={item._id}
 								value={item.timer}
 								title={item.title}
-								onChange={this.handleRadio.bind(this)}
+								onClick={this.handleRadio.bind(this)}
 							/>
 							<span>{item.title}</span>
 						</label>

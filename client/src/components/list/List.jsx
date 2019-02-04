@@ -1,6 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const Highlight = styled.span`
+	font-weight: bolder;
+	font-style: italic;
+`;
 
 /**
  * List default
@@ -43,7 +49,6 @@ class List extends Component {
 	 * Get calculated values of plans
 	 */
 	getPlanValues = () => {
-		console.log(this.state.list[0]);
 		axios
 			.all([
 				axios.get(
@@ -83,10 +88,10 @@ class List extends Component {
 	 * @memberof List
 	 */
 	render() {
-		const { list, withPlan, withoutPlan } = this.state;
+		const { withPlan, withoutPlan } = this.state;
 		return (
 			<Fragment>
-				{list.length > 0 ? (
+				{withPlan && withoutPlan ? (
 					<div className="card">
 						<div className="card-content">
 							<div className="row">
@@ -120,7 +125,10 @@ class List extends Component {
 						</div>
 					</div>
 				) : (
-					''
+					<div className="flow-text center grey-text grey-darken-3">
+						Informe os valores de <Highlight>Origem</Highlight>, <Highlight>Destino</Highlight>,{' '}
+						<Highlight>Minutos</Highlight> e <Highlight>Selecione o Plano</Highlight> para realizar o calculo
+					</div>
 				)}
 			</Fragment>
 		);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const FooterRender = styled.div`
+	z-index: 10;
 	.footer-copyright {
 		overflow: hidden;
 		min-height: 50px;
@@ -34,7 +35,12 @@ class Footer extends Component {
 		return (
 			<div className="col s12 m12 xl12">
 				<div className="container">
-					<div className="footer-copyright">{new Date().getFullYear()} Fabricio Nogueira <a href="mailto:nogsantos@gmail.com">nogsantos@gmail.com</a></div>
+					<div className="footer-copyright">
+						{new Date().getFullYear()} Fabricio Nogueira{' '}
+						<a href="https://fabricionogueira.me" target="_blanck">
+							fabricionogueira.me
+						</a>
+					</div>
 				</div>
 			</div>
 		);
