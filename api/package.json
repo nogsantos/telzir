@@ -1,5 +1,5 @@
 {
-	"name": "telzir",
+	"name": "tapi-elzir",
 	"version": "0.1.0",
 	"description": "Telzir Fale mais",
 	"scripts": {
@@ -13,9 +13,11 @@
 	"license": "ISC",
 	"private": true,
 	"keywords": [
-		"vilzir",
+		"vizir",
 		"challange",
-		"telzir"
+		"telzir",
+		"api",
+		"node"
 	],
 	"dependencies": {
 		"body-parser": "1.18.3",
