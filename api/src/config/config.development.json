@@ -1,9 +1,9 @@
 {
 	"databaseConfig": {
-		"user": "root",
-		"password": "guit23",
-		"host": "ds145868.mlab.com",
-		"port": "45868",
-		"database": "telzir"
+		"user": "***",
+		"password": "***",
+		"host": "***",
+		"port": "***",
+		"database": "***"
 	}
 }
