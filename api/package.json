@@ -24,7 +24,7 @@
 		"cors": "2.8.5",
 		"express": "4.16.4",
 		"module-alias": "2.1.0",
-		"mongoose": "5.4.7"
+		"mongoose": "5.8.0"
 	},
 	"devDependencies": {
 		"eslint": "5.12.1",
