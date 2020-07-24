@@ -56,12 +56,9 @@ jobs:
       - run: |
           cd ./client
           echo ${{ secrets.REACT_APP_ENV }} > .env
-          cat .env
-          ls -lha
           export REACT_APP_API_ENDPOINT=${{ secrets.REACT_APP_API_ENDPOINT }}
           export REACT_APP_NAME=${{ secrets.REACT_APP_NAME }}
           export REACT_APP_ENV=${{ secrets.REACT_APP_ENV }}
-          printenv
           npm i
           npm run build
           npm install -g surge
