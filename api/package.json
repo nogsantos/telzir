@@ -3,10 +3,10 @@
 	"version": "0.1.0",
 	"description": "Telzir Fale mais",
 	"scripts": {
-		"test": "./node_modules/.bin/jest --verbose --no-cache",
-		"test:watch": "./node_modules/.bin/jest --verbose --no-cache --watch",
-		"start": "./node_modules/.bin/npm-run-all --parallel build:*",
-		"build:server": "./node_modules/.bin/nodemon ./src/server.js"
+		"test": "jest --verbose --no-cache",
+		"test:watch": "jest --verbose --no-cache --watch",
+		"start": "npm-run-all --parallel build:*",
+		"build:server": "nodemon ./src/server.js"
 	},
 	"main": "./src/server.js",
 	"author": "Fabricio Nogueira",
@@ -43,7 +43,7 @@
 		"url": "https://github.com/nogsantos/telzir/issues"
 	},
 	"engines": {
-		"node": ">=6.0.0"
+		"node": "10.x"
 	},
 	"_moduleAliases": {
 		"@root": ".",
