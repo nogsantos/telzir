@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '12.x'
       - run: |
           npm i
           npm run setup
@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
         with:
-          node-version: '10.x'
+          node-version: '12.x'
       - run: |
           npm i
           npm run setup
@@ -34,28 +34,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - run: |
-          ls -lha
-          cd ./api
-          ls -lha
-      - uses: akhileshns/heroku-deploy@v3.0.0
+      - uses: akhileshns/heroku-deploy@v3.3.6
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_APP}}
           heroku_email: ${{secrets.EMAIL}}
+          appdir: "api"
 
   publish_client:
-    needs: test
+    needs: [test, publish_api]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '12.x'
+        env:
+          REACT_APP_API_ENDPOINT: ${{ secrets.REACT_APP_API_ENDPOINT }}
+          REACT_APP_NAME: ${{ secrets.REACT_APP_NAME }}
+          REACT_APP_ENV: ${{ secrets.REACT_APP_ENV }}
       - run: |
-          ls -lha
           cd ./client
+          echo ${{ secrets.REACT_APP_ENV }} > .env
+          cat .env
           ls -lha
+          export REACT_APP_API_ENDPOINT=${{ secrets.REACT_APP_API_ENDPOINT }}
+          export REACT_APP_NAME=${{ secrets.REACT_APP_NAME }}
+          export REACT_APP_ENV=${{ secrets.REACT_APP_ENV }}
+          printenv
           npm i
           npm run build
           npm install -g surge
