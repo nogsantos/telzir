@@ -2,7 +2,7 @@
 
 Fabricio Nogueira (nogsantos@gmail.com).
 
-##### Estrutura do projeto
+##### Project structure
 
 - /
   - scripts
