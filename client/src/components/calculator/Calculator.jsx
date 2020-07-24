@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
-import { Input, Select, List } from '../';
+import { Input, Select, List, Loading } from '../';
 
 const CalculatorCard = styled.div`
 	min-height: 21.9rem;
@@ -29,8 +29,9 @@ class Calculator extends Component {
 			destiny: null,
 			timer: null,
 			selected: null,
+			isLoading: false,
 			products: [],
-			briefing: []
+			briefing: [],
 		};
 	}
 
@@ -38,30 +39,34 @@ class Calculator extends Component {
 	 * When component mount
 	 */
 	componentDidMount() {
+		this.setState({ isLoading: true });
 		axios
 			.all([
 				axios.get(`${process.env.REACT_APP_API_ENDPOINT}/product/list`),
-				axios.get(`${process.env.REACT_APP_API_ENDPOINT}/briefing/ref/speakmore`)
+				axios.get(`${process.env.REACT_APP_API_ENDPOINT}/briefing/ref/speakmore`),
 			])
 			.then(
 				axios.spread((products_response, briefing_response) => {
 					this.setState({
 						products: products_response.data,
-						briefing: briefing_response.data[0]
+						briefing: briefing_response.data[0],
 					});
 				})
-			);
+			)
+			.finally(() => {
+				this.setState({ isLoading: false });
+			});
 	}
 
 	/**
 	 * Context: When the user select a plan, sends to calculate
 	 */
-	selectedPlan = plan => this.calcToList(plan);
+	selectedPlan = (plan) => this.calcToList(plan);
 
 	/**
 	 * Context: Set input values
 	 */
-	setStateValue = item => {
+	setStateValue = (item) => {
 		let sourceValue = {};
 		switch (item.source) {
 			case 'origin':
@@ -83,15 +88,15 @@ class Calculator extends Component {
 	/**
 	 * Context: Calcule values
 	 */
-	calcToList = plan => {
+	calcToList = (plan) => {
 		this.setState({
 			selected: {
 				_id: plan.id + this.state.origin + this.state.destiny + this.state.timer,
 				origin: this.state.origin,
 				destiny: this.state.destiny,
 				time: this.state.timer,
-				plan: plan
-			}
+				plan: plan,
+			},
 		});
 	};
 	/**
@@ -102,7 +107,7 @@ class Calculator extends Component {
 	 */
 	render() {
 		const { selectedPlan, setStateValue } = this;
-		const { selected } = this.state;
+		const { selected, isLoading } = this.state;
 		return (
 			<Fragment>
 				<CalculatorCard className="card">
@@ -110,13 +115,17 @@ class Calculator extends Component {
 						<span className="card-title">Calculadora</span>
 						<div className="row">
 							<div className="col s12 m12 xl4">
-								<Input id="origin" label="Origem" min={3} max={3} {...{ setStateValue }} />
+								{isLoading ? <Loading /> : <Input id="origin" label="Origem" min={3} max={3} {...{ setStateValue }} />}
 							</div>
 							<div className="col s12 m12 xl4">
-								<Input id="destiny" label="Destino" min={3} max={3} {...{ setStateValue }} />
+								{isLoading ? (
+									<Loading />
+								) : (
+									<Input id="destiny" label="Destino" min={3} max={3} {...{ setStateValue }} />
+								)}
 							</div>
 							<div className="col s12 m12 xl4">
-								<Input id="timer" label="Minutos" min={1} max={5} {...{ setStateValue }} />
+								{isLoading ? <Loading /> : <Input id="timer" label="Minutos" min={1} max={5} {...{ setStateValue }} />}
 							</div>
 						</div>
 						<div className="row">

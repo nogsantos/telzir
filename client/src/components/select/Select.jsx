@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
 import styled from 'styled-components';
+
+import { Loading } from '../';
 
 const SelectRender = styled.div`
 	display: flex;
@@ -18,23 +21,23 @@ const SelectRender = styled.div`
 			border-radius: 10px;
 		}
 	}
-	@media(max-width: 992px) {
+	@media (max-width: 992px) {
 		flex-flow: column;
 		.radioPad {
 			max-width: 100%;
 		}
 	}
-	@media(max-width: 991px) {
+	@media (max-width: 991px) {
 		span {
 			font-size: 2.5vw;
 		}
 	}
-	@media(max-width: 600px) {
+	@media (max-width: 600px) {
 		span {
 			font-size: 3.5vw;
 		}
 	}
-	@media(max-width: 450px) {
+	@media (max-width: 450px) {
 		span {
 			font-size: 5vw;
 		}
@@ -95,7 +98,8 @@ class Select extends Component {
 		this.state = {
 			plans: [],
 			scroll: 0,
-			select: ''
+			isLoading: false,
+			select: '',
 		};
 	}
 
@@ -103,7 +107,7 @@ class Select extends Component {
 		window.removeEventListener('scroll', this.handleScroll);
 	}
 
-	handleScroll = event => {
+	handleScroll = (event) => {
 		let scrollTop = event.target.scrollingElement.scrollTop;
 		this.setState({ scroll: scrollTop });
 	};
@@ -130,14 +134,18 @@ class Select extends Component {
 	 * When component mount
 	 */
 	componentDidMount() {
+		this.setState({ isLoading: true });
 		axios
 			.get(`${process.env.REACT_APP_API_ENDPOINT}/product/promotion/speak-more/list`)
-			.then(response => {
+			.then((response) => {
 				this.setState({
-					plans: response.data
+					plans: response.data,
 				});
 			})
-			.catch(err => {});
+			.catch((err) => {})
+			.finally(() => {
+				this.setState({ isLoading: false });
+			});
 
 		window.addEventListener('scroll', this.handleScroll);
 	}
@@ -197,7 +205,7 @@ class Select extends Component {
 	 * @memberof Select
 	 */
 	render() {
-		return <SelectRender>{this.Render()}</SelectRender>;
+		return <SelectRender>{this.state.isLoading ? <Loading /> : this.Render()}</SelectRender>;
 	}
 }
 
