@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+
 import styled from 'styled-components';
 
 const MainHeader = styled.div`
-	height: 15rem;
 	color: #fff;
+`;
+
+const HeaderTitle = styled.div`
+	@media(min-width: 960px) {
+        height: 5rem;
+		font-size: 3.5rem;
+	}
 `;
 
 /**
@@ -23,11 +30,7 @@ class Header extends Component {
 		return (
 			<MainHeader data-testid="header" className="purple darken-2 z-depth-2">
 				<div className="container">
-					<div className="row">
-						<div className="col s12 m12 xl12">
-							<h1>Telzir</h1>
-						</div>
-					</div>
+					<HeaderTitle className="flow-text">Telzir</HeaderTitle>
 				</div>
 			</MainHeader>
 		);

@@ -8,7 +8,9 @@ describe('Input component', () => {
 	test('should throws an error for required props when they are missing', () => {
 		const props = {
 			id: 'origin',
-			label: 'Origem'
+			label: 'Origem',
+			min: 1,
+			max: 2
 		};
 		render(<Input {...props} />);
 		jest.spyOn(global.console, 'warn');

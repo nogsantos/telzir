@@ -30,5 +30,6 @@
 .DS_STORE
 **/dump.rdb
 
-**/package-lock.json
-package-lock.json
+**/.env
+
+.history
