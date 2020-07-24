@@ -1,9 +1,0 @@
-{
-	"databaseConfig": {
-		"user": "***",
-		"password": "***",
-		"host": "***",
-		"port": "***",
-		"database": "***"
-	}
-}

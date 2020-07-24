@@ -6,11 +6,6 @@ const product = require('@routes/product');
 const promotions = require('@routes/promotions');
 const briefing = require('@routes/briefing');
 /**
- * Detect environment
- */
-const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
-
-/**
  * Enable All CORS Requests
  */
 app.use(cors());
@@ -37,15 +32,16 @@ app.use('/product/promotion', promotions);
 app.use('/briefing', briefing);
 
 /**
- * Load config by environment
- */
-const config = require(`./config.${env}.json`);
-
-/**
  * Database connector
  */
-const dbconf = config.databaseConfig;
-const conn = `${dbconf.user}:${dbconf.password}@${dbconf.host}:${dbconf.port}/${dbconf.database}`;
+const dotenv = require('dotenv');
+const result = dotenv.config({ debug: process.env.DEBUG });
+
+if (result.error) {
+	console.error('LOG: result.error', result.error);
+}
+
+const conn = `${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DATABASE}`;
 require('./database')(`mongodb://${conn}`);
 
 module.exports = app;
