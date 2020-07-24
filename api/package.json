@@ -25,15 +25,15 @@
 		"dotenv": "^8.2.0",
 		"express": "4.16.4",
 		"module-alias": "2.1.0",
-		"mongoose": "5.8.0"
+		"mongoose": "5.8.0",
+		"nodemon": "^2.0.4",
+		"npm-run-all": "4.1.5"
 	},
 	"devDependencies": {
 		"eslint": "5.12.1",
 		"eslint-plugin-jest": "22.2.2",
 		"jest": "^26.1.0",
-		"mockingoose": "2.12.0",
-		"nodemon": "^2.0.4",
-		"npm-run-all": "4.1.5"
+		"mockingoose": "2.12.0"
 	},
 	"repository": {
 		"type": "git",
@@ -43,7 +43,7 @@
 		"url": "https://github.com/nogsantos/telzir/issues"
 	},
 	"engines": {
-		"node": "10.x"
+		"node": "12.x"
 	},
 	"_moduleAliases": {
 		"@root": ".",
