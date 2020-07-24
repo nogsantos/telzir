@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const SelectRender = styled.div`
 	display: flex;
 	justify-content: space-between;
+
 	span {
 		font-size: 1.5vw;
 	}
@@ -12,24 +13,28 @@ const SelectRender = styled.div`
 		display: inline-block;
 		max-width: 10vw;
 		vertical-align: middle;
+
+		label {
+			border-radius: 10px;
+		}
 	}
-	@media only screen and (max-width: 992px) {
+	@media(max-width: 992px) {
 		flex-flow: column;
 		.radioPad {
 			max-width: 100%;
 		}
 	}
-	@media only screen and (max-width: 991px) {
+	@media(max-width: 991px) {
 		span {
 			font-size: 2.5vw;
 		}
 	}
-	@media only screen and (max-width: 600px) {
+	@media(max-width: 600px) {
 		span {
 			font-size: 3.5vw;
 		}
 	}
-	@media only screen and (max-width: 450px) {
+	@media(max-width: 450px) {
 		span {
 			font-size: 5vw;
 		}
@@ -163,26 +168,24 @@ class Select extends Component {
 			const isCurrent = this.state.select === item._id;
 			return (
 				<div key={key} className="radioPad">
-					<div>
-						<label
-							className={
-								isCurrent
-									? 'radioPad__wrapper radioPad__wrapper--selected promo-' + item.timer
-									: 'radioPad__wrapper promo-' + item.timer
-							}
-						>
-							<input
-								className="radioPad__radio"
-								type="radio"
-								name="plans"
-								id={item._id}
-								value={item.timer}
-								title={item.title}
-								onClick={this.handleRadio.bind(this)}
-							/>
-							<span>{item.title}</span>
-						</label>
-					</div>
+					<label
+						className={
+							isCurrent
+								? 'z-depth-1 radioPad__wrapper radioPad__wrapper--selected promo-' + item.timer
+								: 'z-depth-1 radioPad__wrapper promo-' + item.timer
+						}
+					>
+						<input
+							className="radioPad__radio"
+							type="radio"
+							name="plans"
+							id={item._id}
+							value={item.timer}
+							title={item.title}
+							onClick={this.handleRadio.bind(this)}
+						/>
+						<span>{item.title}</span>
+					</label>
 				</div>
 			);
 		});

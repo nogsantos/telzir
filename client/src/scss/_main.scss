@@ -5,11 +5,6 @@ body {
 	font-size: 14px;
 	color: color('grey', 'darken-3');
 	background-color: #efefee;
-	@media only screen and (min-width: 600px) {
-		background-image: url(https://res.cloudinary.com/nogsantos/image/upload/o_35/v1549231195/telzir/ds.png);
-		background-repeat: no-repeat;
-		background-position: top 15rem left -5rem;
-	}
 }
 
 html::after {
@@ -240,5 +235,17 @@ th {
 			border: 0;
 			border-right: 1px solid $table-border-color;
 		}
+	}
+}
+
+.promo {
+	&--30 {
+		background-color: #7b1ca6a6;
+	}
+	&--60 {
+		background-color: #008000b8;
+	}
+	&--120 {
+		background-color: #a37a05;
 	}
 }

@@ -6,11 +6,13 @@ afterEach(cleanup);
 
 describe('Template Footer component', () => {
 	test('should render author name and class correctly', () => {
+		const year = new Date();
+
 		const { getByTestId } = render(<Footer />);
 		const testTarget = getByTestId('author');
 
 		expect(testTarget.className).toBe('pull-left');
-		expect(testTarget.textContent).toBe('Fabricio Nogueira©2019');
+		expect(testTarget.textContent).toBe(`©Fabricio Nogueira ${year.getFullYear()}`);
 	});
 
 	test('should render contact address correctly', () => {
