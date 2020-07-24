@@ -1,0 +1,40 @@
+name: MasterCI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Test, build and deploy
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Tests
+        uses: actions/setup-node@v1
+        with:
+          node-version: 8
+      - run: npm i
+      - run: npm run test
+
+      - name: Publish client
+        uses: actions/setup-node@v1
+        with:
+          node-version: 8
+      - run: cd client
+      - run: npm i
+      - run: npm run build
+      - run: npm install -g surge
+      - run: surge ./build/ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+
+      - name: Publish api
+      - uses: akhileshns/heroku-deploy@v3.0.0
+      - run: cd api
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP}}
+          heroku_email: ${{secrets.EMAIL}}
+          usedocker: true
